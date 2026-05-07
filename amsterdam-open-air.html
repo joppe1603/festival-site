@@ -121,10 +121,10 @@
         const amazonLink = (productId) => "https://www.amazon.nl/dp/" + productId + "?tag=" + affiliateTag;
 
         const products = [
-          { id: "B0FGCPNM3X", name: "Boho Festival Jurk (Eyelet)", price: "€XX" },
-          { id: "B01IFAU65K", name: "GURU SHOP Hippie Tunic Mini Dress", price: "€XX" },
-          { id: "B0BCHXWD35", name: "Oversized Hoodie Dames", price: "€XX" },
-          { id: "B07TMH4FQQ", name: "Urban Classics High Waist Cargo Broek", price: "€XX" }
+          { id: "B0FGCPNM3X", name: "Boho Festival Jurk (Eyelet)", price: "€XX", img: "https://images.unsplash.com/photo-6iCVV9Flnxw?w=400&q=80" },
+          { id: "B01IFAU65K", name: "GURU SHOP Hippie Tunic Mini Dress", price: "€XX", img: "https://images.unsplash.com/photo-bwFuhV5G0c0?w=400&q=80" },
+          { id: "B0BCHXWD35", name: "Oversized Hoodie Dames", price: "€XX", img: "https://images.unsplash.com/photo-26bY5dz1m8s?w=400&q=80" },
+          { id: "B07TMH4FQQ", name: "Urban Classics High Waist Cargo Broek", price: "€XX", img: "https://images.unsplash.com/photo-4vTHnY5VnR8?w=400&q=80" }
         ];
 
         const grid = document.getElementById("product-grid");
@@ -133,6 +133,11 @@
           card.className =
             "rounded-xl border border-zinc-800/90 bg-zinc-900/60 p-5 shadow-[0_0_50px_rgba(52,211,153,0.10)] ring-1 ring-white/5 transition hover:-translate-y-1 hover:border-brand/60 hover:shadow-[0_0_70px_rgba(52,211,153,0.18)]";
           card.innerHTML =
+            '<img src="' +
+            p.img +
+            '" alt="' +
+            p.name +
+            '" class="h-[300px] w-full rounded-lg object-cover" />' +
             '<p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand">Amazon.nl</p>' +
             '<h3 class="mt-2 text-lg font-bold text-white">' +
             p.name +

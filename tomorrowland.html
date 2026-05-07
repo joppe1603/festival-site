@@ -121,10 +121,10 @@
         const amazonLink = (productId) => "https://www.amazon.nl/dp/" + productId + "?tag=" + affiliateTag;
 
         const products = [
-          { id: "B07QJFR5P9", name: "Holographic Metallic Bodysuit", price: "€XX" },
-          { id: "B0CYCKQT5J", name: "Glitter Top (V-hals)", price: "€XX" },
-          { id: "B0BJKB3K52", name: "Neon Rave Bodysuit Set", price: "€XX" },
-          { id: "B0FGCPNM3X", name: "Boho Festival Jurk (Eyelet)", price: "€XX" }
+          { id: "B07QJFR5P9", name: "Holographic Metallic Bodysuit", price: "€XX", img: "https://images.unsplash.com/photo-0hszGinbgwE?w=400&q=80" },
+          { id: "B0CYCKQT5J", name: "Glitter Top (V-hals)", price: "€XX", img: "https://images.unsplash.com/photo-9V2hslk2X30?w=400&q=80" },
+          { id: "B0BJKB3K52", name: "Neon Rave Bodysuit Set", price: "€XX", img: "https://images.unsplash.com/photo-GEV9C9ooLLU?w=400&q=80" },
+          { id: "B0FGCPNM3X", name: "Boho Festival Jurk (Eyelet)", price: "€XX", img: "https://images.unsplash.com/photo-6iCVV9Flnxw?w=400&q=80" }
         ];
 
         const grid = document.getElementById("product-grid");
@@ -133,6 +133,11 @@
           card.className =
             "rounded-xl border border-zinc-800/90 bg-zinc-900/60 p-5 shadow-[0_0_50px_rgba(34,211,238,0.10)] ring-1 ring-white/5 transition hover:-translate-y-1 hover:border-brand/60 hover:shadow-[0_0_70px_rgba(34,211,238,0.18)]";
           card.innerHTML =
+            '<img src="' +
+            p.img +
+            '" alt="' +
+            p.name +
+            '" class="h-[300px] w-full rounded-lg object-cover" />' +
             '<p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand">Amazon.nl</p>' +
             '<h3 class="mt-2 text-lg font-bold text-white">' +
             p.name +
