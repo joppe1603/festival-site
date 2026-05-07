@@ -237,26 +237,31 @@
           "Andere|Glam": { name: "Universal Glam Spark", description: "Een glam fit met instant wow-factor die je op ieder festival laat stralen." }
         };
 
+        const affiliateTag = "b0dpkx25jj-21";
+        function amazonLink(productId) {
+          return "https://www.amazon.nl/dp/" + productId + "?tag=" + affiliateTag;
+        }
+
         const itemsByStyle = {
           Streetwear: [
-            { name: "Oversized Utility Jacket", price: "€54,95", link: "#" },
-            { name: "Cargo Festival Pants", price: "€44,95", link: "#" },
-            { name: "Chunky Platform Sneakers", price: "€69,95", link: "#" }
+            { name: "Oversized Hoodie Dames", price: "€XX", link: amazonLink("B0BCHXWD35") },
+            { name: "Urban Classics High Waist Cargo Broek", price: "€XX", link: amazonLink("B07TMH4FQQ") },
+            { name: "ZODLLS Cargo Broek Camo", price: "€XX", link: amazonLink("B07WZCKRPJ") }
           ],
           Boho: [
-            { name: "Flow Kimono Layer", price: "€39,95", link: "#" },
-            { name: "Crochet Crop Top", price: "€29,95", link: "#" },
-            { name: "Suede Fringe Boots", price: "€74,95", link: "#" }
+            { name: "Boho Festival Jurk (Milkmaid Eyelet)", price: "€XX", link: amazonLink("B0FGCPNM3X") },
+            { name: "Cowgirl Fringe Top Festival", price: "€XX", link: amazonLink("B0C8T2BSTZ") },
+            { name: "Boho Fringe Hem Maxi Rok", price: "€XX", link: amazonLink("B0D3FLNFDZ") }
           ],
           Rave: [
-            { name: "Reflective Crop Vest", price: "€34,95", link: "#" },
-            { name: "Neon Buckle Shorts", price: "€32,95", link: "#" },
-            { name: "LED Mesh Gloves", price: "€19,95", link: "#" }
+            { name: "Neon Rave Bodysuit Set", price: "€XX", link: amazonLink("B0BJKB3K52") },
+            { name: "EDC Festival Neon Bodysuit 2-Delig", price: "€XX", link: amazonLink("B0FC31QHMB") },
+            { name: "Neon Mesh Buckle Rave Set", price: "€XX", link: amazonLink("B0BF9YMTQN") }
           ],
           Glam: [
-            { name: "Sequin Statement Blazer", price: "€79,95", link: "#" },
-            { name: "Metallic Mini Skirt", price: "€36,95", link: "#" },
-            { name: "Crystal Body Chain", price: "€27,95", link: "#" }
+            { name: "Glitter Top met V-Hals", price: "€XX", link: amazonLink("B0CYCKQT5J") },
+            { name: "Holographic Metallic Bodysuit", price: "€XX", link: amazonLink("B07QJFR5P9") },
+            { name: "Metallic Skater Rok Set", price: "€XX", link: amazonLink("B0DQXG3FYP") }
           ]
         };
 
@@ -297,7 +302,7 @@
             card.innerHTML =
               '<h4 class="font-semibold text-white">' + item.name + "</h4>" +
               '<p class="mt-1 text-sm text-accent">' + item.price + "</p>" +
-              '<a href="' + item.link + '" class="mt-3 inline-flex rounded-md bg-brand px-3 py-2 text-sm font-bold text-white transition hover:bg-purple-500">Bekijk deal</a>';
+              '<a href="' + item.link + '" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex rounded-md bg-brand px-3 py-2 text-sm font-bold text-white transition hover:bg-purple-500">Koop op Amazon</a>';
             resultItems.appendChild(card);
           });
 
