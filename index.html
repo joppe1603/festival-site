@@ -49,6 +49,62 @@
         </div>
       </section>
 
+      <section id="outfit-quiz" class="mx-auto max-w-7xl px-6 pb-20">
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-6 md:p-8">
+          <div class="mb-6 flex items-center justify-between gap-4">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                Outfit Quiz
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-white md:text-3xl">
+                Vind jouw perfecte festival fit in 3 stappen
+              </h2>
+            </div>
+            <p id="quiz-progress" class="text-sm text-zinc-400">Stap 1 van 3</p>
+          </div>
+
+          <div id="quiz-panel" class="rounded-xl border border-zinc-800 bg-zinc-950/60 p-5 transition-all duration-500 ease-out md:p-6">
+            <div id="quiz-step-1" class="quiz-step">
+              <h3 class="text-xl font-semibold text-white">1) Welk festival?</h3>
+              <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                <button type="button" data-question="festival" data-value="Tomorrowland" class="quiz-option rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-left font-semibold text-zinc-200 transition hover:border-brand hover:bg-brand/20">Tomorrowland</button>
+                <button type="button" data-question="festival" data-value="Defqon" class="quiz-option rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-left font-semibold text-zinc-200 transition hover:border-brand hover:bg-brand/20">Defqon</button>
+                <button type="button" data-question="festival" data-value="Amsterdam Open Air" class="quiz-option rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-left font-semibold text-zinc-200 transition hover:border-brand hover:bg-brand/20">Amsterdam Open Air</button>
+                <button type="button" data-question="festival" data-value="Andere" class="quiz-option rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-left font-semibold text-zinc-200 transition hover:border-brand hover:bg-brand/20">Andere</button>
+              </div>
+            </div>
+
+            <div id="quiz-step-2" class="quiz-step hidden">
+              <h3 class="text-xl font-semibold text-white">2) Wat is jouw stijl?</h3>
+              <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                <button type="button" data-question="style" data-value="Streetwear" class="quiz-option rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-left font-semibold text-zinc-200 transition hover:border-brand hover:bg-brand/20">Streetwear</button>
+                <button type="button" data-question="style" data-value="Boho" class="quiz-option rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-left font-semibold text-zinc-200 transition hover:border-brand hover:bg-brand/20">Boho</button>
+                <button type="button" data-question="style" data-value="Rave" class="quiz-option rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-left font-semibold text-zinc-200 transition hover:border-brand hover:bg-brand/20">Rave</button>
+                <button type="button" data-question="style" data-value="Glam" class="quiz-option rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-left font-semibold text-zinc-200 transition hover:border-brand hover:bg-brand/20">Glam</button>
+              </div>
+            </div>
+
+            <div id="quiz-step-3" class="quiz-step hidden">
+              <h3 class="text-xl font-semibold text-white">3) Wat is je budget?</h3>
+              <div class="mt-4 grid gap-3 sm:grid-cols-3">
+                <button type="button" data-question="budget" data-value="Onder €50" class="quiz-option rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-left font-semibold text-zinc-200 transition hover:border-brand hover:bg-brand/20">Onder €50</button>
+                <button type="button" data-question="budget" data-value="€50-€100" class="quiz-option rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-left font-semibold text-zinc-200 transition hover:border-brand hover:bg-brand/20">€50-€100</button>
+                <button type="button" data-question="budget" data-value="Boven €100" class="quiz-option rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-left font-semibold text-zinc-200 transition hover:border-brand hover:bg-brand/20">Boven €100</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="quiz-result" class="mt-6 hidden rounded-xl border border-brand/40 bg-gradient-to-r from-brand/20 to-zinc-900 p-6 opacity-0 transition-all duration-500 ease-out">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Jouw match</p>
+            <h3 id="result-name" class="mt-2 text-2xl font-black text-white"></h3>
+            <p id="result-description" class="mt-3 max-w-2xl text-zinc-200"></p>
+            <p id="result-budget-note" class="mt-2 text-sm font-semibold text-brand"></p>
+
+            <div id="result-items" class="mt-6 grid gap-4 md:grid-cols-3"></div>
+          </div>
+        </div>
+      </section>
+
       <section id="shop" class="mx-auto max-w-7xl px-6 pb-20">
         <div class="mb-8 flex items-end justify-between gap-4">
           <h2 class="text-2xl font-bold text-white md:text-3xl">
@@ -145,5 +201,140 @@
         <p>Affiliate disclaimer: wij kunnen een commissie ontvangen bij aankopen via links op deze pagina.</p>
       </div>
     </footer>
+    <script>
+      (function () {
+        const answers = { festival: "", style: "", budget: "" };
+        const steps = [
+          document.getElementById("quiz-step-1"),
+          document.getElementById("quiz-step-2"),
+          document.getElementById("quiz-step-3")
+        ];
+        const panel = document.getElementById("quiz-panel");
+        const progress = document.getElementById("quiz-progress");
+        const resultEl = document.getElementById("quiz-result");
+        const resultName = document.getElementById("result-name");
+        const resultDescription = document.getElementById("result-description");
+        const resultBudgetNote = document.getElementById("result-budget-note");
+        const resultItems = document.getElementById("result-items");
+        const optionButtons = document.querySelectorAll(".quiz-option");
+
+        const outfitByFestivalStyle = {
+          "Tomorrowland|Streetwear": { name: "Neon Urban Pulse", description: "Een frisse streetwear look met opvallende details voor lange dansdagen in Boom." },
+          "Tomorrowland|Boho": { name: "Dream Garden Boho", description: "Flowy stoffen, zachte glitter en comfort voor een romantische Tomorrowland vibe." },
+          "Tomorrowland|Rave": { name: "Laser Dome Raver", description: "High-energy set met neon accenten die perfect werkt bij nachtshows en pyro." },
+          "Tomorrowland|Glam": { name: "Mainstage Glam Queen", description: "Statement pieces met glans en metallic touch om de mainstage te ownen." },
+          "Defqon|Streetwear": { name: "Hardstyle Street Armor", description: "Stevige streetwear fit die stijl en draagcomfort combineert voor ruige sets." },
+          "Defqon|Boho": { name: "Raw Boho Rebel", description: "Een gedurfde boho-mix met donkere tinten en festivalproof lagen voor Defqon." },
+          "Defqon|Rave": { name: "Bassline Shockwave", description: "Rave essentials met reflectie en utility details voor maximale impact." },
+          "Defqon|Glam": { name: "Midnight Hard Glam", description: "Glam met een edgy hardstyle randje: sparkle, zwart en attitude." },
+          "Amsterdam Open Air|Streetwear": { name: "Canal Cool Streetfit", description: "Minimalistische streetwear met trendy city details voor een strakke day-party look." },
+          "Amsterdam Open Air|Boho": { name: "Sunset Boho Chic", description: "Lichte boho lagen met aardetinten die perfect passen bij outdoor city vibes." },
+          "Amsterdam Open Air|Rave": { name: "City Lights Rave Set", description: "Speelse rave elementen gecombineerd met clean silhouettes voor urban festivals." },
+          "Amsterdam Open Air|Glam": { name: "Open Air Luxe Glow", description: "Luxe glam look met subtiele sparkle die overdag en 's avonds werkt." },
+          "Andere|Streetwear": { name: "Allround Street Rider", description: "Een veelzijdige streetwear combi die werkt op elk terrein en elk genre." },
+          "Andere|Boho": { name: "Free Spirit Voyager", description: "Comfortabele boho set met zachte materialen en easy layering voor elk event." },
+          "Andere|Rave": { name: "Pulse Explorer Kit", description: "Rave-ready outfit met functionele details en opvallende afwerking." },
+          "Andere|Glam": { name: "Universal Glam Spark", description: "Een glam fit met instant wow-factor die je op ieder festival laat stralen." }
+        };
+
+        const itemsByStyle = {
+          Streetwear: [
+            { name: "Oversized Utility Jacket", price: "€54,95", link: "#" },
+            { name: "Cargo Festival Pants", price: "€44,95", link: "#" },
+            { name: "Chunky Platform Sneakers", price: "€69,95", link: "#" }
+          ],
+          Boho: [
+            { name: "Flow Kimono Layer", price: "€39,95", link: "#" },
+            { name: "Crochet Crop Top", price: "€29,95", link: "#" },
+            { name: "Suede Fringe Boots", price: "€74,95", link: "#" }
+          ],
+          Rave: [
+            { name: "Reflective Crop Vest", price: "€34,95", link: "#" },
+            { name: "Neon Buckle Shorts", price: "€32,95", link: "#" },
+            { name: "LED Mesh Gloves", price: "€19,95", link: "#" }
+          ],
+          Glam: [
+            { name: "Sequin Statement Blazer", price: "€79,95", link: "#" },
+            { name: "Metallic Mini Skirt", price: "€36,95", link: "#" },
+            { name: "Crystal Body Chain", price: "€27,95", link: "#" }
+          ]
+        };
+
+        const budgetNotes = {
+          "Onder €50": "Budget focus: slimme picks onder de €50 per item.",
+          "€50-€100": "Mid-range focus: premium look zonder over je budget te gaan.",
+          "Boven €100": "Premium focus: statement pieces met high-end uitstraling."
+        };
+
+        function animateStepChange(fromStep, toStep) {
+          if (fromStep) {
+            fromStep.classList.add("opacity-0", "-translate-y-2");
+            setTimeout(function () {
+              fromStep.classList.add("hidden");
+              fromStep.classList.remove("opacity-0", "-translate-y-2");
+              toStep.classList.remove("hidden");
+              toStep.classList.add("opacity-0", "translate-y-2");
+              requestAnimationFrame(function () {
+                toStep.classList.remove("opacity-0", "translate-y-2");
+              });
+            }, 220);
+          }
+        }
+
+        function showResult() {
+          const key = answers.festival + "|" + answers.style;
+          const outfit = outfitByFestivalStyle[key];
+          const items = itemsByStyle[answers.style] || [];
+
+          resultName.textContent = outfit.name;
+          resultDescription.textContent = outfit.description;
+          resultBudgetNote.textContent = budgetNotes[answers.budget] || "";
+
+          resultItems.innerHTML = "";
+          items.forEach(function (item) {
+            const card = document.createElement("article");
+            card.className = "rounded-lg border border-zinc-700 bg-zinc-950/80 p-4";
+            card.innerHTML =
+              '<h4 class="font-semibold text-white">' + item.name + "</h4>" +
+              '<p class="mt-1 text-sm text-accent">' + item.price + "</p>" +
+              '<a href="' + item.link + '" class="mt-3 inline-flex rounded-md bg-brand px-3 py-2 text-sm font-bold text-white transition hover:bg-purple-500">Bekijk deal</a>';
+            resultItems.appendChild(card);
+          });
+
+          resultEl.classList.remove("hidden");
+          requestAnimationFrame(function () {
+            resultEl.classList.remove("opacity-0", "translate-y-3");
+          });
+        }
+
+        function setProgress(stepIndex) {
+          progress.textContent = "Stap " + (stepIndex + 1) + " van 3";
+        }
+
+        optionButtons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            const question = button.dataset.question;
+            const value = button.dataset.value;
+            answers[question] = value;
+
+            if (question === "festival") {
+              setProgress(1);
+              animateStepChange(steps[0], steps[1]);
+            } else if (question === "style") {
+              setProgress(2);
+              animateStepChange(steps[1], steps[2]);
+            } else if (question === "budget") {
+              progress.textContent = "Resultaat klaar";
+              panel.classList.add("opacity-0", "translate-y-2");
+              setTimeout(function () {
+                panel.classList.add("hidden");
+                panel.classList.remove("opacity-0", "translate-y-2");
+                showResult();
+              }, 250);
+            }
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
